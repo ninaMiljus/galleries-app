@@ -8,6 +8,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    redirect: '/galleries'
+  },
+  {
     path: '/register',
     name: 'register',
     component: Register,
