@@ -1,4 +1,5 @@
 import galleriesService from '../../services/GalleriesService';
+
 export const actions = {
   async getGalleries(store) {
     const galleries = await galleriesService.getGalleries(store.state.searchTerm);

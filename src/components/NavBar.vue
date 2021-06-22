@@ -12,7 +12,7 @@
         <router-link to="/login">Login</router-link>
       </template>
       <template v-else>
-        <a class="button" @click="logout">Logout</a>
+        <a class="button" @click="logoutUser">Logout</a>
       </template>
     </div>
   </div>
@@ -32,6 +32,10 @@ export default {
     ...mapActions('galleries', ['getGalleries']),
     ...mapMutations('galleries', ['setSearchTerm']),
     ...mapActions('auth', ['logout']),
+    async logoutUser(){
+        await this.logout();
+        this.$router.push('/login');
+    }
   },
 };
 </script>
