@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import galleries from './galleries';
 import auth from './auth';
-import images from './images'
+import images from './images';
 
 Vue.use(Vuex);
 

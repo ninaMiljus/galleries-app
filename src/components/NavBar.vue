@@ -4,7 +4,7 @@
       <router-link to="/">Galleries</router-link> |
     </div>
     <div class="nav-box">
-      <input @input="search" placeholder="search" />
+      <input @input="search" placeholder="Search"/> 
     </div>
     <div class="nav-box">
       <template v-if="!isAuthenticated">
@@ -35,7 +35,7 @@ export default {
     async logoutUser(){
         await this.logout();
         this.$router.push('/login');
-    }
+    },
   },
 };
 </script>

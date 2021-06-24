@@ -7,6 +7,8 @@ const store = {
   state: {
     galleries: [],
     images: [],
+    gallery: {},
+    image: {}
   },
   actions,
   mutations,

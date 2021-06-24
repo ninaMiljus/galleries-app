@@ -7,6 +7,7 @@ const store = {
   state: {
     galleries: [],
     searchTerm: '',
+    gallery: {},
   },
   actions,
   mutations,

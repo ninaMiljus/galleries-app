@@ -4,14 +4,25 @@
     <h1>Galleries</h1>
     <br />
     <div v-for="(gallery, index) in galleries" :key="index">
-      <h3>
+      <h4>
         Gallery Name:
         <router-link :to="`/galleries/${gallery.id}`">
           {{ gallery.name }}</router-link>
-      </h3>
-
+      </h4>
+      <h5>
+        Author: 
+        <router-link :to="{ name: 'author', params: {id: gallery.user.id }}">
+          {{gallery.user.name}}</router-link>
+      </h5>
+    <h5>Images</h5>
+      <img 
+        width="150px"
+        height="150px"
+        v-bind:src="gallery.images.source"
+        :key="index"
+      >
     <div class="description">Description: {{gallery.description}}</div>
-     <p>Created_at: {{gallery.created_at}}</p>
+     <p>Created at: {{gallery.created_at}}</p>
         <div>
              <b-carousel
                 id="carousel-1"
@@ -19,8 +30,8 @@
                 controls
                 indicators
                 background="#ababab"
-                img-width="200"
-                img-height="200"
+                img-width="1024"
+                img-height="480"
                 style="text-shadow: 1px 1px 2px #333;"
                 >
                      <b-carousel-slide v-for="(image,index) in gallery.images" :key="index"   :img-src="image.source" alt="Card image cap" >
@@ -30,6 +41,7 @@
  </div>
   </div>
 </template>
+
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
@@ -39,7 +51,7 @@ export default {
   },
   methods: {
     ...mapActions( 'galleries',['getGalleries'] ),
-    ...mapActions( 'images',['getImages'] ), 
+    ...mapActions( 'images',['getImages'] ),  //('galleries', ['setSearchTerm'])
   },
   async created() {
     await this.getGalleries();
