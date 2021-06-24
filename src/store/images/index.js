@@ -6,7 +6,7 @@ const store = {
   namespaced: true,
   state: {
     galleries: [],
-    searchTerm: '',
+    images: [],
   },
   actions,
   mutations,
