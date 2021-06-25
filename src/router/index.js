@@ -2,10 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import { globalAuthGuard } from '../guards/authGuard'
 import Galleries from '../components/Galleries'
 import Gallery from '../components/Gallery'
 import Author from '../components/Author'
+import { globalAuthGuard } from '../guards/authGuard'
+
 
 Vue.use(VueRouter)
 
@@ -38,7 +39,7 @@ const routes = [
     meta: { guestRequired: true },
   },
   {
-    path: "/authors/:id",
+    path: '/authors/:id',
     name: 'author',
     component: Author,
     props: true,
