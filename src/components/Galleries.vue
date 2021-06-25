@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     ...mapActions( 'galleries',['getGalleries'] ),
-    ...mapActions( 'images',['getImages'] ),  //('galleries', ['setSearchTerm'])
+    ...mapActions( 'images',['getImages'] ), 
   },
   async created() {
     await this.getGalleries();

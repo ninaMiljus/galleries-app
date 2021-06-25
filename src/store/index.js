@@ -4,6 +4,7 @@ import galleries from './galleries';
 import auth from './auth';
 import images from './images';
 import user from './user'
+import comment from './comment'
 
 Vue.use(Vuex);
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     galleries,
     auth,
     images,
-    user
+    user,
+    comment
   },
 });

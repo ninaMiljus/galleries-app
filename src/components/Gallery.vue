@@ -2,7 +2,7 @@
     <div v-if="gallery">
         <h1>Gallery</h1>
         <h2>Gallery: {{gallery.name}}</h2>
-        <h4>Author: <router-link :to="{ name: 'authors', params: {id: gallery.user.id }}">{{gallery.user.name}}</router-link></h4>
+        <h4>Author: <router-link :to="{ name: 'author', params: {id: gallery.user.id }}">{{gallery.user.name}}</router-link></h4>
         <div class="description">Description: {{gallery.description}}</div>
         <p>Created at: {{gallery.created_at}}</p>
                 <div class="card-body" >
@@ -24,24 +24,75 @@
                      </b-carousel-slide>
          </b-carousel>
         </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h2>Comments: </h2>
+        <div v-for="(comment) in gallery.comments" :key="comment.id">{{ comment.text }}</div>
+        <template v-if="isAuthenticated">
+            <form @submit.prevent="onSubmit">
+            Add coment:
+            <br/>
+            <textarea
+                class="text"
+                type="text"
+                v-model="comment.text"
+                name="body"
+                id="body"
+                cols="50"
+                rows="3"
+                required
+            ></textarea>
+            <br/>
+            <button type="submit" class="btn btn-primary">
+            Add Comment
+            </button>
+            </form>
+        </template>
     </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-
 export default {
   name: 'gallery',
+   data() {
+    return {
+      comment: {
+        gallery_id: this.id,
+        text: "",
+      },
+      comments: [],
+    };
+  },
   props: ["id"],
   computed: {
     ...mapGetters('galleries', ['gallery']),
     ...mapGetters('auth', ['isAuthenticated']),
+    ...mapGetters('comment', ['comments']),
+    ...mapGetters( 'auth', ['activeUser']),
   },
   methods: {
     ...mapActions('galleries', ['getGallery']),
+    ...mapActions('comment', ['getCommentsForGallery']),
+    ...mapActions('comments', ['deleteComment']),
+    ...mapActions('comments', ['addComment']),
+    ...mapActions('auth', ['getActiveUser']),
+
+    async onSubmit() {
+      await this.addComment(this.comment);
+      this.comments = await this.getCommentsForGallery(this.id);
+      this.comment.text = "";
+    },
   },
+
   async created() {
     await this.getGallery(this.id);
+    await this.getCommentsForGallery(this.id);
+    await this.$store.dispatch("auth/getActiveUser");
   },
 };
 </script>
