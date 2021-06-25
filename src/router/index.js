@@ -38,10 +38,11 @@ const routes = [
     meta: { guestRequired: true },
   },
   {
-    path: '/author',
+    path: "/authors/:id",
     name: 'author',
-    component: Author
-  }
+    component: Author,
+    props: true,
+  },
 ]
 
 const router = new VueRouter({
