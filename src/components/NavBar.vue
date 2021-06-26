@@ -7,7 +7,7 @@
         </template>
     </div>
     <div class="nav-box">
-      <form class="form-inline" @handleSearchText="setSearchText">
+      <form class="form-inline" @search="setSearchText">
         <input @input="search" placeholder="Search"/> 
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
@@ -31,16 +31,18 @@ export default {
     ...mapGetters('auth', ['isAuthenticated']),
   },
   methods: {
-    search(evt) {
-      this.setSearchTerm(evt.target.value);
-      this.getGalleries();
-    },
     ...mapActions('galleries', ['getGalleries']),
     ...mapMutations('galleries', ['setSearchTerm']),
     ...mapActions('auth', ['logout']),
+
     async logoutUser(){
         await this.logout();
         this.$router.push('/login');
+    },
+    
+     search(evt) {
+      this.setSearchTerm(evt.target.value);
+      this.getGalleries();
     },
   },
 };
