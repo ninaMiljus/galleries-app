@@ -2,17 +2,28 @@
    <div>
     <h1>My galleries: </h1>
     <h3><div v-for="(gallery, index) in this.user.galleries" :key="index">
-      <b>Name: </b>{{ gallery.name }} 
+      <b>Name: </b>{{ gallery.name }} <button type="button" @click="deleteGallery(gallery.id)" class="btn btn-danger">Delete Gallery</button>
       <br>
       <b>Description:</b>{{ gallery.description }} 
       <br>
       <b>Created at: </b>{{ gallery.created_at }}
       <br>
-      <img 
-    width="150px"
-    height="150px"
-    v-bind:src="gallery.images.source"
-    :key="index"></div></h3>
+      <div>
+             <b-carousel
+                id="carousel-1"
+                :interval="4000"
+                controls
+                indicators
+                background="#ababab"
+                img-width="1024"
+                img-height="480"
+                style="text-shadow: 1px 1px 2px #333;"
+                >
+                     <b-carousel-slide v-for="(image,index) in gallery.images" :key="index"   :img-src="image.source" >
+                     </b-carousel-slide>
+         </b-carousel>
+        </div>
+      </div></h3>                
   </div>
 </template>
 
@@ -24,12 +35,18 @@ export default {
   },
   computed: {
     ...mapGetters('auth', ['activeUser']),
+    ...mapGetters('auth', ['isAuthenticated']),
     ...mapGetters('user', ['user'] ),
   },
   methods: {
     ...mapActions('auth', ['getActiveUser']),
     ...mapActions('user', ['getUser']),
     ...mapActions( 'galleries',['getGalleries']),
+
+    async deleteGallery(){
+      await this.deleteGallery(this.gallery.id);
+      this.$router.push('/myGalleries');
+    }
   },
     async created() {
     await this.getActiveUser();
@@ -40,4 +57,12 @@ export default {
 };
 </script>
 
-<style scoped></style> 
+<style scoped>
+#carousel-1{
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style> 

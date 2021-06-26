@@ -44,6 +44,9 @@
           id="password_confirmation"
           aria-describedby="password_confirmation"
         />
+        <form action="#" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }">
+          <input type="checkbox" name="checkbox" value="check" id="agree" /> I have read and agree to the Terms and Conditions and Privacy Policy
+        </form>
       </div>
       <p v-if="registerFailed" class="error-message">Something went wrong</p>
       <button type="submit" class="btn btn-primary">Register</button>

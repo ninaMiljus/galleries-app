@@ -2,6 +2,7 @@
   <div class="nav">
     <div class="nav-box">
       <router-link to="/">Galleries</router-link> |
+      <router-link to="/myGalleries">My Galeries</router-link>
     </div>
     <div class="nav-box">
       <input @input="search" placeholder="Search"/> 
@@ -12,8 +13,7 @@
         <router-link to="/login">Login</router-link>
       </template>
       <template v-else>
-        <a class="button" @click="logoutUser">Logout</a> |
-        <router-link to="/myGalleries">My Galeries</router-link>
+        <a class="button" @click="logoutUser">Logout</a> 
       </template>
     </div>
   </div>
