@@ -1,8 +1,10 @@
 <template>
   <div class="nav">
     <div class="nav-box">
-      <router-link to="/">Galleries</router-link> |
-      <router-link to="/myGalleries">My Galeries</router-link>
+        <router-link to="/">Galleries</router-link> |
+        <template v-if="isAuthenticated">
+          <router-link to="/myGalleries">My Galeries</router-link>
+        </template>
     </div>
     <div class="nav-box">
       <input @input="search" placeholder="Search"/> 
