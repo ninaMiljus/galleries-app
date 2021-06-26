@@ -14,8 +14,9 @@ export const actions = {
     state.commit('addGallery', data);
 
   },
-  async deleteGallery(store, gallery) {
-    await galleriesService.deleteGallery(gallery.id);
-    store.commit('deleteGallery', gallery);
+  async deleteGallery(store) {
+    await galleriesService.deleteGallery(this.gallery.id);
+    this.galleries = this.galleries.filter(gallery => gallery.id !== this.id)
+    store.commit('deleteGallery', this.gallery.id);
   },
 };

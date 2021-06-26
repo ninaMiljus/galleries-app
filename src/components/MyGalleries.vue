@@ -2,11 +2,15 @@
    <div>
     <h1>My galleries: </h1>
     <h3><div v-for="(gallery, index) in this.user.galleries" :key="index">
-      <b>Name: </b>{{ gallery.name }} 
+      <b>Name: </b>
+      <router-link :to="`/galleries/${gallery.id}`">
+          {{ gallery.name }}</router-link>
       <br>
-      <b>Description:</b>{{ gallery.description }} 
+      <b>Description:</b>
+      {{ gallery.description }} 
       <br>
-      <b>Created at: </b>{{ gallery.created_at }}
+      <b>Created at: </b>
+      {{ gallery.created_at }}
       <br>
       <div>
              <b-carousel
@@ -23,14 +27,16 @@
                      </b-carousel-slide>
          </b-carousel>
         </div>
+        <br/>
         <template v-if="isAuthenticated">
           <button type="button" @click="deleteGallery(gallery.id)" class="btn btn-danger">Delete Gallery</button>
         </template>
-      </div></h3>                
+      </div></h3>               
   </div>
 </template>
 
 <script>
+
 import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
@@ -40,11 +46,13 @@ export default {
     ...mapGetters('auth', ['activeUser']),
     ...mapGetters('auth', ['isAuthenticated']),
     ...mapGetters('user', ['user'] ),
+    ...mapGetters('galleries', ['id'])
   },
   methods: {
     ...mapActions('auth', ['getActiveUser']),
     ...mapActions('user', ['getUser']),
     ...mapActions( 'galleries',['getGalleries']),
+    ...mapActions( 'galleries',['deleteGallery']),
 
     async deleteGallery(){
       await this.deleteGallery(this.gallery.id);
@@ -56,14 +64,14 @@ export default {
     await this.getUser(this.activeUser.id);
     await this.getGalleries();
   },
- 
-};
+
+}
 </script>
 
 <style scoped>
 #carousel-1{
     width: 200px;
-    height: 200px;
+    height: 150px;
     display: block;
     margin-left: auto;
     margin-right: auto;

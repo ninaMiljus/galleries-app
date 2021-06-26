@@ -3,4 +3,5 @@ export const getters = {
     numberPerPage:(state) => state.numberPerPage,
     gallery: (state) => state.gallery,
     searchTerm: (state) => state.searchTerm,
+    id: (state) => state.id,
 };

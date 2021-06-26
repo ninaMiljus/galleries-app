@@ -34,6 +34,9 @@
         <div v-for="(comment) in gallery.comments" :key="comment.id">
             {{ comment.text }} 
             {{comment.created_at}}
+            <template v-if="isAuthenticated">
+              <button type="button" @click="deleteComment(comment.id)" class="btn btn-danger">Delete Comment</button>
+            </template>
         </div>
         <template v-if="isAuthenticated">
             <form @submit.prevent="onSubmit">
@@ -84,6 +87,11 @@ export default {
     ...mapActions('comments', ['deleteComment']),
     ...mapActions('comments', ['addComment']),
     ...mapActions('auth', ['getActiveUser']),
+
+    async deleteComment(){
+      await this.deleteComment(this.comment.id);
+      this.$router.push('/gallery');
+    },
 
     async onSubmit() {
       await this.addComment(this.comment);

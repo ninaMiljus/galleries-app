@@ -14,13 +14,6 @@
         <router-link :to="{ name: 'author', params: {id: gallery.user.id }}">
           {{gallery.user.name}}</router-link>
       </h5>
-    <h5>Images</h5>
-      <img 
-        width="150px"
-        height="150px"
-        v-bind:src="gallery.images.source"
-        :key="index"
-      >
     <div class="description">Description: {{gallery.description}}</div>
      <p>Created at: {{gallery.created_at}}</p>
         <div>
@@ -63,7 +56,7 @@ export default {
 
     loadMoreGalleries() {
       this.currentSize += 10
-      this.allGalleries({'pagination': this.currentSize, 'searchText': this.searchText})
+      this.allGalleries({'pagination': this.currentSize})
     },
   },
   async created() {
@@ -74,7 +67,7 @@ export default {
 <style scoped>
 #carousel-1{
     width: 200px;
-    height: 200px;
+    height: 150px;
     display: block;
     margin-left: auto;
     margin-right: auto;
