@@ -7,8 +7,8 @@
         </template>
     </div>
     <div class="nav-box">
-      <form class="form-inline" @search="setSearchText">
-        <input @input="search" placeholder="Search"/> 
+      <form class="form-inline" @handleSearchText="setSearchText">
+        <input class="form-control" type="search" placeholder="Search galleries..." v-model="search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
@@ -27,8 +27,14 @@
 import { mapActions, mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'nav-bar',
+  data() {
+    return {
+      search: ''
+    }   
+  },
   computed: {
     ...mapGetters('auth', ['isAuthenticated']),
+    ...mapGetters('galleries', ['searchTerm'])
   },
   methods: {
     ...mapActions('galleries', ['getGalleries']),
@@ -39,11 +45,15 @@ export default {
         await this.logout();
         this.$router.push('/login');
     },
-    
-     search(evt) {
-      this.setSearchTerm(evt.target.value);
-      this.getGalleries();
+
+    setSearchText(search) {
+      this.searchText = search;
+      this.getGalleries({'searchText': this.searchText})
     },
+    
+    handleSearchText() {
+      this.$emit('handleSearchText', this.search)
+    }
   },
 };
 </script>

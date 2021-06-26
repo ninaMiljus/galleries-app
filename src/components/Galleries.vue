@@ -61,6 +61,9 @@ export default {
   },
   async created() {
     await this.getGalleries();
+    if (this.galleries.length === 0) {
+      alert("There are no galleries. Make one to start!");
+    }
   },
 };
 </script>
