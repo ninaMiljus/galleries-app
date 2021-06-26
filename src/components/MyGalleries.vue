@@ -53,6 +53,7 @@ export default {
     ...mapActions('user', ['getUser']),
     ...mapActions( 'galleries',['getGalleries']),
     ...mapActions( 'galleries',['deleteGallery']),
+    ...mapActions('galleries', ['getGallery']),
 
     async deleteGallery(){
       await this.deleteGallery(this.gallery.id);
@@ -63,6 +64,7 @@ export default {
     await this.getActiveUser();
     await this.getUser(this.activeUser.id);
     await this.getGalleries();
+    await this.getGallery(this.id);
   },
 
 }

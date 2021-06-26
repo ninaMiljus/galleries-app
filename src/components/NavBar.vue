@@ -7,7 +7,10 @@
         </template>
     </div>
     <div class="nav-box">
-      <input @input="search" placeholder="Search"/> 
+      <form class="form-inline" @handleSearchText="setSearchText">
+        <input @input="search" placeholder="Search"/> 
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
     <div class="nav-box">
       <template v-if="!isAuthenticated">

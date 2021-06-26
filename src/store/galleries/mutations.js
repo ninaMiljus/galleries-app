@@ -9,8 +9,8 @@ export const mutations = {
   addGallery(state, payload) {
     state.galleries = payload
   },
-  deleteGallery(state, id) {
-    state.id = id  
+  deleteGallery(state, gallery) {
+    state.galleries = state.deleteGallery.filter((g) => g.id !== gallery.id);
   },
   setSearchTerm(state, searchTerm) {
     state.searchTerm = searchTerm;
