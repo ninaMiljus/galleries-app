@@ -31,7 +31,10 @@
         <br/>
         <br/>
         <h2>Comments: </h2>
-        <div v-for="(comment) in gallery.comments" :key="comment.id">{{ comment.text }}</div>
+        <div v-for="(comment) in gallery.comments" :key="comment.id">
+            {{ comment.text }} 
+            {{comment.created_at}}
+        </div>
         <template v-if="isAuthenticated">
             <form @submit.prevent="onSubmit">
             Add coment:

@@ -12,7 +12,8 @@
         <router-link to="/login">Login</router-link>
       </template>
       <template v-else>
-        <a class="button" @click="logoutUser">Logout</a>
+        <a class="button" @click="logoutUser">Logout</a> |
+        <router-link to="/myGalleries">My Galeries</router-link>
       </template>
     </div>
   </div>

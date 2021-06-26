@@ -14,6 +14,6 @@ export default new Vuex.Store({
     auth,
     images,
     user,
-    comment
+    comment,
   },
 });

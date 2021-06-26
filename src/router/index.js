@@ -5,6 +5,8 @@ import Register from '../views/Register.vue'
 import Galleries from '../components/Galleries'
 import Gallery from '../components/Gallery'
 import Author from '../components/Author'
+import MyGalleries from '../components/MyGalleries'
+
 import { globalAuthGuard } from '../guards/authGuard'
 
 
@@ -42,6 +44,11 @@ const routes = [
     path: '/authors/:id',
     name: 'author',
     component: Author,
+    props: true,
+  },
+  {
+    path: '/myGalleries',
+    component: MyGalleries,
     props: true,
   },
 ]

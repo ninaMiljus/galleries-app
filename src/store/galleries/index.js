@@ -8,6 +8,7 @@ const store = {
     galleries: [],
     searchTerm: '',
     gallery: {},
+    numberPerPage: Number
   },
   actions,
   mutations,

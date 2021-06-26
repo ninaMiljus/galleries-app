@@ -34,24 +34,37 @@
                 img-height="480"
                 style="text-shadow: 1px 1px 2px #333;"
                 >
-                     <b-carousel-slide v-for="(image,index) in gallery.images" :key="index"   :img-src="image.source">
+                     <b-carousel-slide v-for="(image,index) in gallery.images" :key="index"   :img-src="image.source" >
                      </b-carousel-slide>
          </b-carousel>
         </div>
  </div>
+ <button class="btn btn-primary" style="marginBottom: 15px" v-if="currentSize <= numberPerPage" @click="loadMoreGalleries">Load More</button>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+
 export default {
-    name: 'galleries',
+  name: 'galleries',
+  data() {
+    return {
+      currentSize: 10
+    }
+  },
   computed: {
     ...mapGetters('galleries', ['galleries'] ),
+    ...mapGetters( 'galleries', ['numberPerPage'] ),
   },
   methods: {
     ...mapActions( 'galleries',['getGalleries'] ),
     ...mapActions( 'images',['getImages'] ), 
+
+    loadMoreGalleries() {
+      this.currentSize += 10
+      this.allGalleries({'pagination': this.currentSize, 'searchText': this.searchText})
+    },
   },
   async created() {
     await this.getGalleries();

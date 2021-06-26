@@ -1,6 +1,7 @@
 export const mutations = {
   setGalleries(state, galleries) {
-    state.galleries = galleries;
+   state.galleries = galleries
+   state.numberPerPage = galleries[1]
   },
   setGallery(state, gallery) {
     state.gallery = gallery;
@@ -13,5 +14,8 @@ export const mutations = {
   },
   setSearchTerm(state, searchTerm) {
     state.searchTerm = searchTerm;
+  },
+  pagination(state, payload) {
+    state.pagination = payload;
   },
 };
