@@ -33,7 +33,8 @@ export default {
   },
     async created() {
     await this.getActiveUser();
-    await this.getUser(this.user.id);
+    await this.getUser(this.activeUser.id);
+    await this.getGalleries();
   },
  
 };
